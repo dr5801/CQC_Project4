@@ -1,1 +1,0 @@
-Fibonacci.o: ../Fibonacci.c
