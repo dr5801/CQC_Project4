@@ -22,7 +22,8 @@ public class SouthMover implements Mover
 			spaces = (numberOfRows - row) - 1;
 		}
 		
-		for(int i = 0; i < spaces; i++)
+		int i = 0;
+		while(!moved && (i < spaces))
 		{
 			if(cells[row+(spaces-i)][column].getLifeForm() == null)
 			{
@@ -32,6 +33,7 @@ public class SouthMover implements Mover
 				Environment.getWorldInstance().setSelectedLFCol(column);
 				moved = true;
 			}
+			i++;
 		}
 		
 		return moved;

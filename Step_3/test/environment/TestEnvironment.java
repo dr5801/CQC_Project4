@@ -631,8 +631,12 @@ public class TestEnvironment
 	public void testEnvironmentException() throws EnvironmentException
 	{
 		Environment e = Environment.getWorldInstance(5, 5);
-		Distance distance = new Distance(1, 2, 8, 3);
-		distance.getCalculatedDistance();
+		MockLifeForm bob = new MockLifeForm(null, 0);
+		MockLifeForm jim = new MockLifeForm(null, 0);
+		
+		e.addLifeForm(bob, 5, 6);
+		e.addLifeForm(jim, 6, 5);
+		e.getDistance(bob, jim);
 	}
 	
 	/**

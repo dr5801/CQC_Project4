@@ -21,9 +21,10 @@ public class NorthMover implements Mover
 			spaces = row;
 		}
 		
-		for(int i = 0; i < spaces; i++)
+		int i = 0;
+		while(!moved && (i < spaces))
 		{
-			if(cells[row][column].getLifeForm() == null)
+			if(cells[row-(spaces-i)][column].getLifeForm() == null)
 			{
 				cells[row][column].removeLifeForm();
 				cells[row-(spaces-i)][column].addLifeForm(lifeForm);
@@ -31,6 +32,7 @@ public class NorthMover implements Mover
 				Environment.getWorldInstance().setSelectedLFCol(column);
 				moved = true;
 			}
+			i++;
 		}
 		
 		return moved;

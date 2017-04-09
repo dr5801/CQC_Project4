@@ -21,7 +21,8 @@ public class WestMover implements Mover
 			spaces = column;
 		}
 		
-		for(int i = 0; i < spaces; i++)
+		int i = 0;
+		while(!moved && (i < spaces))
 		{
 			if(cells[row][column-(spaces-i)].getLifeForm() == null)
 			{
@@ -31,6 +32,7 @@ public class WestMover implements Mover
 				Environment.getWorldInstance().setSelectedLFCol(column-(spaces-i));
 				moved = true;
 			}
+			i++;
 		}
 		
 		return moved;

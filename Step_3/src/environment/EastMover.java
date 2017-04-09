@@ -22,7 +22,8 @@ public class EastMover implements Mover
 			spaces = (numberOfColumns - column) - 1;
 		}
 		
-		for(int i = 0; i < spaces; i++)
+		int i = 0;
+		while(!moved && (i < spaces))
 		{
 			if(cells[row][column+(spaces-i)].getLifeForm() == null)
 			{
@@ -32,8 +33,9 @@ public class EastMover implements Mover
 				Environment.getWorldInstance().setSelectedLFCol(column+(spaces-i));
 				moved = true;
 			}
+			i++;
 		}
-		
+
 		return moved;
 	}
 
