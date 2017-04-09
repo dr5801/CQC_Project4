@@ -105,7 +105,7 @@ public class Environment
 		if(row >= 0 && column >= 0)
 		{
 			/* check upper bound */
-			if(this.numberOfRows > numberOfRows && this.numberOfColumns > column)
+			if(this.numberOfRows > row && this.numberOfColumns > column)
 			{
 				validCoordinate = true;
 			}

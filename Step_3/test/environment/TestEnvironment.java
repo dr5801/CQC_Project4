@@ -612,9 +612,14 @@ public class TestEnvironment
 	public void testGetDistanceCoordinates() throws EnvironmentException
 	{
 		Environment e = Environment.getWorldInstance(5, 5);
-		assertEquals(15, e.getDistance(1, 0, 1, 3));
-		assertEquals(10, e.getDistance(2, 1, 4, 1));
-		assertEquals(28, e.getDistance(0, 0, 4, 4));
+		Distance distance = new Distance(1, 0, 1, 3);
+		assertEquals(15, distance.getCalculatedDistance());
+		
+		distance = new Distance(2, 1, 4, 1);
+		assertEquals(10, distance.getCalculatedDistance());
+		
+		distance = new Distance(0, 0, 4, 4);
+		assertEquals(28, distance.getCalculatedDistance());
 	}
 	
 	/**
@@ -626,7 +631,8 @@ public class TestEnvironment
 	public void testEnvironmentException() throws EnvironmentException
 	{
 		Environment e = Environment.getWorldInstance(5, 5);
-		e.getDistance(1, 2, 8, 3);
+		Distance distance = new Distance(1, 2, 8, 3);
+		distance.getCalculatedDistance();
 	}
 	
 	/**
