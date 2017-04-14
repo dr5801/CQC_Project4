@@ -11,7 +11,6 @@ import lifeform.LifeForm;
  */
 public class Environment 
 {
-	
 	private Cell[][] cells;								//array of cells in environment
 	private int numberOfRows, numberOfColumns;			//total number of rows and columns
 	private volatile static Environment environment;	//unique instance of Environment
@@ -22,7 +21,7 @@ public class Environment
 		{
 				new Edge(new NorthVerifier(), new NorthMover()),
 				new Edge(new SouthVerifier(), new SouthMover()),
-				new Edge(new WestVerifier(), new WestMover()),
+				new Edge(new WestVerifier(), new WestMover()), 
 				new Edge(new EastVerifier(), new EastMover())
 		};
 	
@@ -131,7 +130,7 @@ public class Environment
 		}
 		else
 		{
-			/* not a vlid coordinate; return false */
+			/* not a valid coordinate; return false */
 			return false;
 		}
 	}
@@ -186,8 +185,6 @@ public class Environment
 		return environmentExists;
 	}
 
-	
-	
 	/**
 	 * Adds the specified weapon to the cell at (row, col).
 	 * @return true if successfully added, false otherwise.
@@ -354,7 +351,7 @@ public class Environment
 	 * @param lifeForm
 	 * @return true if the entity exists; false otherwise
 	 */
-	private boolean checkLifeExists(LifeForm lifeForm) 
+	public boolean checkLifeExists(LifeForm lifeForm) 
 	{
 		if(lifeForm != null)
 		{
@@ -370,7 +367,7 @@ public class Environment
 	 * @param spaces
 	 * @return true if spaces is greater than 0; false otherwise
 	 */
-	private boolean validSpaces(int spaces) 
+	public boolean validSpaces(int spaces) 
 	{
 		if(spaces > 0)
 		{
@@ -424,7 +421,6 @@ public class Environment
 		return this.numberOfColumns;
 	}
 	
-	
 	/**
 	 * Returns the currently selected LifeForm's row position.
 	 * @author Jordan Long
@@ -454,12 +450,11 @@ public class Environment
 	}
 	
 	/**
-	 * sets the selectedLFCol
+	 * Sets the selectedLFCol
+	 * @author Jordan Long
 	 */
 	public void setSelectedLFCol(int column)
 	{
 		this.selectedLFCol = column;
 	}
-	
-	
 }

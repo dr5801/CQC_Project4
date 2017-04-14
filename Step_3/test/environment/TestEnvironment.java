@@ -521,6 +521,8 @@ public class TestEnvironment
 		assertTrue(e.addWeapon(wp2, 0, 0));
 		assertEquals(wp1, e.getWeapon(1, 0, 0));
 		assertEquals(wp2, e.getWeapon(2, 0, 0));
+		assertFalse(e.addWeapon(wp1, -1, -6));
+		assertEquals(null, e.getWeapon(1, -1, -6));
 	}
 	
 	/**
@@ -542,6 +544,7 @@ public class TestEnvironment
 		//now both positions should be null
 		assertNull(e.getWeapon(1, 0, 0));
 		assertNull(e.getWeapon(2, 0, 0));
+		assertEquals(null, e.removeWeapon(1, -9, -4));
 	}
 	
 	/**
@@ -717,5 +720,66 @@ public class TestEnvironment
 		assertTrue(environment.removeLifeForm(1, 2));
 		// now getLifeForm() should return null indicating no life form exists at position
 		assertNull(environment.getLifeForm(1, 2));
+		assertFalse(environment.removeLifeForm(-1, -2));
+
+	}
+	
+	/**
+	 * Test getting a lifeform from an invalid position, will return null.
+	 */
+	@Test
+	public void testGetLifeFormFailure()
+	{
+		Human human = new Human("Bob", 30);
+		Environment e = Environment.getWorldInstance(5, 5);
+		e.addLifeForm(human, 4, 2);
+		assertEquals(null, e.getLifeForm(-1, -5));
+		e.clearEnvironment();
+	}
+	
+	/**
+	 * Test if a life form exists at a given location.
+	 */
+	@Test
+	public void testLifeFormExists()
+	{
+		Human human = new Human("Bob", 30);
+		Human bill = null;
+		Environment e = Environment.getWorldInstance(5, 5);
+		e.addLifeForm(human, 4, 2);
+		assertEquals(true, e.checkLifeExists(human));
+		assertEquals(false, e.checkLifeExists(bill));
+		e.clearEnvironment();
+	}
+	
+	
+	/**
+	 * Test if negative spaces are rejected.
+	 */
+	@Test
+	public void testSpaces()
+	{
+		Human human = new Human("Bob", 30);
+		Environment e = Environment.getWorldInstance(5, 5);
+		e.addLifeForm(human, 4, 2);
+		assertFalse(e.validSpaces(-1));
+		assertTrue(e.validSpaces(1));
+		e.clearEnvironment();
+	}
+	
+	/**
+	 * Test if negative spaces are rejected.
+	 */
+	@Test
+	public void testGetSelectedRowAndCol()
+	{
+		Human human = new Human("Bob", 30);
+		Environment e = Environment.getWorldInstance(5, 5);
+		e.addLifeForm(human, 4, 2);
+		e.setSelectedLFRow(5);
+		assertEquals(5,e.getselectedLFRow());
+		e.setSelectedLFCol(5);
+		assertEquals(5,e.getselectedLFCol());
+		e.clearEnvironment();
 	}
 }
